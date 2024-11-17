@@ -32,15 +32,15 @@ BOOKS = [
 TASKS = [
     {
         'task': 'Bake Bread',
-        'status': 'Not Started'
+        'done': False
     },
         {
         'task': 'Make a CRUD App',
-        'status': 'Not Started'
+        'done': True
     },
     {
         'task': 'Soccer Practice',
-        'status': 'Not Started'
+        'done': False
     }
 ]
 

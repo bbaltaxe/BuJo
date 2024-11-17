@@ -4,8 +4,6 @@
       <div class="col-sm-10">
         <h1>Bullet Journal</h1>
         <br><br>
-        <button type="button" class="btn btn-success btn-sm">Add Task</button>
-        <br><br>
         <table class="table-borderless table-hover">
         <!-- 
           <thead>
@@ -19,25 +17,57 @@
           </thead>
         -->
           <tbody>
-            <tr>
-              <td><i class="bi bi-circle"></i></td>
-              <td>bar</td>
+            <tr v-for="(task,index) in tasks" :key="index">
               <td>
+                <span v-if="task.done"><i class="bi bi-circle"></i></span>
+                <span v-else><i class="bi bi-circle-fill"></i></span>
+              </td>
+              <td>{{ task.task }}</td>
+<!--               <td>
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-primary btn-sm">Mark Complete</button>
                   <button type="button" class="btn btn-secondary btn-sm">Migrate</button>
                 </div>
-              </td>
-              <td>
+              </td> -->
+              <!-- <td>
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-warning btn-sm">Edit</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button>
                 </div>
-              </td>
-            </tr>
+              </td> -->
+            </tr> 
           </tbody>
         </table>
+        <br><br>
+        <button type="button" class="btn btn-success btn-sm">Add Task</button>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      tasks: [],
+    };
+  },
+  methods: {
+    getTasks() {
+      const path = 'http://localhost:5001/tasks';
+      axios.get(path)
+        .then((res) => {
+          this.tasks = res.data.tasks;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  created() {
+    this.getTasks();
+  },
+};
+</script>
