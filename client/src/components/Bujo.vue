@@ -19,8 +19,10 @@
           <tbody>
             <tr v-for="(task,index) in tasks" :key="index">
               <td>
-                <span v-if="task.done"><i class="bi bi-circle"></i></span>
-                <span v-else><i class="bi bi-circle-fill"></i></span>
+                <i
+                  :class="task.done ? 'bi bi-circle-fill' : 'bi bi-circle'"
+                  @click="task.done = !task.done;" 
+                ></i>
               </td>
               <td>{{ task.task }}</td>
 <!--               <td>
@@ -65,6 +67,9 @@ export default {
           console.error(error);
         });
     },
+    // editTaskStatus(status){
+    //   if ()
+    // }
   },
   created() {
     this.getTasks();
