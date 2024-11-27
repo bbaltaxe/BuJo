@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@mdi/font": "^7.4.47"
+  },
+  "dependencies": {
+    "vuetify": "^3.7.0-beta.1"
+  }
+}

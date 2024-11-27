@@ -2,27 +2,17 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-10">
-        <h1>Bullet Journal</h1>
+        <h1>Bullet Journal</h1> 
+         <v-icon icon="mdi-home" />
         <br><br>
         <table class="table-borderless table-hover">
-        <!-- 
-          <thead>
-            <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Author</th>
-              <th scope="col">Read?</th>
-              <th></th>
-            </tr>
-          
-          </thead>
-        -->
           <tbody>
             <tr v-for="(task,index) in tasks" :key="index">
               <td>
                 <i
                   :class="task.done ? 'bi bi-circle-fill' : 'bi bi-circle'"
                   @click="task.done = !task.done;" 
-                ></i>
+                ></i>&emsp;  
               </td>
               <td>{{ task.task }}</td>
 <!--               <td>
@@ -38,10 +28,16 @@
                 </div>
               </td> -->
             </tr> 
+            <tr>
+              <td><v-icon :icon="mdiAccount"/>&emsp;  </td>
+              <td>        
+                <!-- INPUT A NEW TASK -->
+                <v-text-field density="compact" placeholder="add item"></v-text-field>
+              </td>
+            </tr>
           </tbody>
         </table>
-        <br><br>
-        <button type="button" class="btn btn-success btn-sm">Add Task</button>
+
       </div>
     </div>
   </div>
