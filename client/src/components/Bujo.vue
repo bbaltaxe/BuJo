@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-10">
         <h1>Bullet Journal</h1> 
-         <v-icon icon="mdi-home" />
+         <v-icon icon="home" />
         <br><br>
         <table class="table-borderless table-hover">
           <tbody>
@@ -29,7 +29,7 @@
               </td> -->
             </tr> 
             <tr>
-              <td><v-icon :icon="mdiAccount"/>&emsp;  </td>
+              <!-- <td><v-icon :icon="mdiAccount"/>&emsp;  </td> -->
               <td>        
                 <!-- INPUT A NEW TASK -->
                 <v-text-field density="compact" placeholder="add item"></v-text-field>
