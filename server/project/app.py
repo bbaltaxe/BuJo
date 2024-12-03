@@ -1,6 +1,11 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+# #connect db
+# import sqlite3
+# con = sqlite3.connect("../db/bujo.db")
+# cur = con.cursor()
+
 
 # instantiate the app
 app = Flask(__name__)
