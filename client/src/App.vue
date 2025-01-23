@@ -8,6 +8,7 @@ import { RouterView } from 'vue-router'
 
 <style>
 #app {
-  margin-top: 60px
+/*  background-color: #EBD5B3;*/
+  margin-top: 60px;
 }
 </style>

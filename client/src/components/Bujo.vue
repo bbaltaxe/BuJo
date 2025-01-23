@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="row">
       <div class="col-sm-10">
@@ -15,24 +16,11 @@
                 ></i>&emsp;  
               </td>
               <td>{{ task.task }}</td>
-<!--               <td>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-primary btn-sm">Mark Complete</button>
-                  <button type="button" class="btn btn-secondary btn-sm">Migrate</button>
-                </div>
-              </td> -->
-              <!-- <td>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                </div>
-              </td> -->
             </tr> 
             <tr>
-              <!-- <td><v-icon :icon="mdiAccount"/>&emsp;  </td> -->
-              <td>        
+              <td colspan="2">        
                 <!-- INPUT A NEW TASK -->
-                <v-text-field density="compact" placeholder="add item"></v-text-field>
+                <v-text-field density="compact" label="add item" @keydown.enter="handleAdd" v-model="newTask"></v-text-field>
               </td>
             </tr>
           </tbody>
@@ -50,11 +38,27 @@ export default {
   data() {
     return {
       tasks: [],
+      newTask: '',
+      // statusIcon: 'bi-circle',
+      // status_icons: ['bi-circle', 'bi-circle-right', 'bi-arrowright-circle', 'bi-exclamation-circle', 'bi-x-circle'
+      // ],
     };
   },
   methods: {
+    addTask(payload){ 
+      const path = 'http://127.0.0.1:5000/tasks'
+      axios.post(path, payload)
+        .then(() => {
+          this.getTasks();
+        })
+        .catch((error) => {
+
+          console.log(error);
+          this.getTasks();
+        });
+    },
     getTasks() {
-      const path = 'http://localhost:5001/tasks';
+      const path = 'http://127.0.0.1:5000/tasks';
       axios.get(path)
         .then((res) => {
           this.tasks = res.data.tasks;
@@ -63,9 +67,14 @@ export default {
           console.error(error);
         });
     },
-    // editTaskStatus(status){
-    //   if ()
-    // }
+    handleAdd(){
+      const payload = {
+        task: this.newTask,
+      };
+      // reinit
+      this.newTask = ''; 
+      this.addTask(payload);
+    }
   },
   created() {
     this.getTasks();
