@@ -1,10 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-
-# #connect db
-# import sqlite3
-# con = sqlite3.connect("../db/bujo.db")
-# cur = con.cursor()
+import db_utils 
 
 
 # instantiate the app
@@ -13,6 +9,9 @@ app.config.from_object(__name__)
 
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
+
+#initialize DB 
+db_utils.create_db()
 
 # tiny DB
 BOOKS = [
@@ -71,6 +70,17 @@ def all_tasks():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         post_data = request.get_json()
+        task = post_data.get('task')
+
+
+        # # post with sqlite 
+        # conn = sqlite3.connect(dbfile)
+        # c = conn.cursor()
+        # c.execute('INSERT INTO tasks (task) VALUES (?)', (task),)
+        # conn.commit()
+        # conn.close()
+
+        # post with no db
         TASKS.append({
                 'task': post_data.get('task'), 
                 'done': False
